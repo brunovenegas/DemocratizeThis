@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Alert } from 'react-native';
 
 export default class SplashScreen extends Component {
+  _onPressButton() {
+    Alert.alert('You tapped the button!')
+  }
+
   render() {
     return (
       <View style={styles.wrapper}>
@@ -9,7 +13,10 @@ export default class SplashScreen extends Component {
           <Text style={styles.title}>DEMOCRATIZE THIS</Text>
           <Image style={styles.philosopher} source={require('./plato.png')} />
 
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={this._onPressButton}
+          >
             <Text style={styles.buttonText}> CONTINUE </Text>
           </TouchableOpacity>
         </View>
@@ -51,6 +58,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+    fontWeight: '700'
   }
 });

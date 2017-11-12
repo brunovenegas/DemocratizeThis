@@ -1,30 +1,35 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+
+const util = require('util');
 
 export default class SplashScreen extends Component {
-  _onPressButton() {
-    Alert.alert('You tapped the button!')
-  }
+  static navigationOptions = {
+    title: 'DEMOCRATIZE THIS',
+  };
 
   render() {
+    //console.log("this.props.navigation = " + util.inspect(this.props.navigation, false, null));
+    var { navigate } = this.props.navigation;
+
     return (
       <View style={styles.wrapper}>
         <View>
           <Text style={styles.title}>DEMOCRATIZE THIS</Text>
           <Image style={styles.philosopher} source={require('./plato.png')} />
 
-          <TouchableOpacity
-          style={styles.buttonContainer}
-          onPress={this._onPressButton}
-          >
-            <Text style={styles.buttonText}> CONTINUE </Text>
-          </TouchableOpacity>
+          <Button
+            onPress={() => navigate('LandingPage')}
+            title="ON DEMOCRACY"
+          />
         </View>
 
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
     wrapper: {

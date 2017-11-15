@@ -1,21 +1,70 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, Alert, Button } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 const util = require('util');
 const whatCanDemocracy = 'What can democracy do for you?';
+const choices = 'What choices will you give the people?'
 
 export default class LandingPage extends Component {
+
+  state = {
+      issue: '',
+      options: []
+  }
+
   static navigationOptions = {
     title: 'Democratize This!',
-  };
+  }
+
+  createdIssue = (text) => {
+    console.log(text);
+    this.setState({ issue: text});
+  }
+
+  issueOptions = () => {
+    console.log("fart");
+  }
+
   render() {
     return (
-      <View style={styles.wrapper}>
-        <Text style={styles.subtitle}>whatCanDemocracy</Text>
-        <TextInput style={styles.textInput}>Hello hello 123</TextInput>
-        <Text style={styles.subtitle}>Choices</Text>
-        <TextInput style={styles.textInput}>Let us try this again</TextInput>
+      <View 
+        style={styles.wrapper}>
+        <Text 
+          style={styles.subtitle}>
+          {whatCanDemocracy}
+        </Text>
+        <View 
+          style={styles.genericView}>
+          <TextInput 
+            style={styles.textInput}
+            underlineColorAndroid = "transparent"
+            placeholder = "Issue"
+            onChangeText={(text) => this.createdIssue({text})}>
+          </TextInput>
+        </View>
+        <Text 
+          style={styles.subtitle}>
+          {choices}
+        </Text>
+        <View 
+          style={styles.genericView}>
+          <TextInput 
+            style={styles.textInput}
+            underlineColorAndroid = "transparent"
+            placeholder = "List your choices"
+            multiline={true}
+            numberOfLines={4}>
+          </TextInput>
+        </View>
+        <View
+          style={styles.genericView}>
+          <Button
+            style={styles.buttonContainer}
+            title= "Submit"
+            onPress = {() => this.issueOptions()}>
+          </Button>
+        </View>
       </View>
     );
   }
@@ -23,19 +72,25 @@ export default class LandingPage extends Component {
 
 const styles = StyleSheet.create({
     wrapper: {
-    backgroundColor: '#3498db',
+    backgroundColor: '#FFFFFF',
     flex: 1
   },
   subtitle: {
-    color: 'white',
-    fontWeight: '200'
+    fontWeight: '200',
+    padding: 10
   },
   textInput: {
-    height: 40,
+    width: '95%',
+    padding: 10,
+    borderWidth: 1
+  },
+  genericView: {
     width: '100%',
-    color: 'white',
-    borderColor: 'white',
-    borderWidth: 1,
+    alignItems: 'center',
+    paddingHorizontal: 10
+  },
+  buttonContainer: {
+    width: '25%',
     padding: 10
   }
 });

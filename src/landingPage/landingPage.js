@@ -26,6 +26,10 @@ export default class LandingPage extends Component {
     console.log("fart");
   }
 
+  submitPressed = (issue) => {
+    console.log("I am in submit pressed " + issue);
+  }
+
   render() {
     return (
       <View 
@@ -40,7 +44,7 @@ export default class LandingPage extends Component {
             style={styles.textInput}
             underlineColorAndroid = "transparent"
             placeholder = "Issue"
-            onChangeText={(text) => this.createdIssue({text})}>
+            onChangeText={this.createdIssue}>
           </TextInput>
         </View>
         <Text 
@@ -62,7 +66,7 @@ export default class LandingPage extends Component {
           <Button
             style={styles.buttonContainer}
             title= "Submit"
-            onPress = {() => this.issueOptions()}>
+            onPress = {() => this.submitPressed(this.state.issue)}>
           </Button>
         </View>
       </View>
